@@ -76,12 +76,17 @@ while True:
 
 print ("\n --- exercise 2 : guess the right number , three attempt ----")
 
-number1 = 9
-counter = 0
-for m in number1:
-    if m == number1:
-    print("correct guess")
-    break
-elif:
-    Print("try again")
+secret_number = 5  
+
+for attempt in range(1, 4): 
+    guess = int(input(f"Attempt {attempt}: Guess the number: "))
+
+    if guess == secret_number:
+        print("🎉 Correct! You guessed the number.")
+        break
+    else:
+        print("❌ Wrong guess.")
+
+if guess != secret_number:
+    print("Sorry! You've used all 3 attempts.")
     

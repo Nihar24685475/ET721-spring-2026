@@ -26,4 +26,4 @@ y2= collectnum('y2')
 distance = calculate_distance(x1,x2,y1,y2)
 print_distance(x1,x2,y1,y2,distance)
 
-print ('\n Exercise')
+print ('\n Exercise')                 
