@@ -1,6 +1,7 @@
 
-
+import random
 import math
+
 def area_rectangle(width,length):
     return width*length
 
@@ -24,3 +25,17 @@ def print_distance(x1,x2,y1,y2,distance):
     print(f"the distance of point ({x1},{y1}) and ({x2},{y2}) is {round(distance)})")
 
     ##Exercise
+
+def generate_random(min_num, max_num):
+    return random.randint(min_num, max_num)
+
+def compare_guess(random_number, user_guess):
+    if random_number < user_guess:
+        print("The number is smaller than the guess number")
+        return False
+    elif random_number > user_guess:
+        print("The number is bigger than the guess number")
+        return False
+    else:
+        print("You got it!")
+        return True

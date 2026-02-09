@@ -3,9 +3,10 @@ Nihar patel
 fab 5, 2026
 ET 721
 Lab 5
-
+Function
 """
 import math
+import random
 from lab5_function_patel import *
 print("\n------- Example 1: user-define function")
 w=10
@@ -26,4 +27,12 @@ y2= collectnum('y2')
 distance = calculate_distance(x1,x2,y1,y2)
 print_distance(x1,x2,y1,y2,distance)
 
-print ('\n Exercise')                 
+print ('\n EXERCISE')  
+
+number = generate_random(1, 100)
+
+while True:
+    user_guess = int(input("Guess a number between 1 and 100: "))
+    
+    if compare_guess(number, user_guess):
+        break
