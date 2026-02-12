@@ -98,7 +98,7 @@ class BankAccount:
 
 useraccount = BankAccount(123456789, "Student's name")
 
-useraccount.withdraw(100)
+useraccount.withdraw(700)
 useraccount.deposit(1000)
 useraccount.withdraw(500)
 useraccount.balance()
