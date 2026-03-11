@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My flask app</title>
+    <link rel="stylesheet" href="{{url_for('static', filename = 'style.css')}}">
+</head>
+<body>
+    <h1 class = "title">Nihar patel</h1>
+    <h2 class ="subtitle">Welcome to Flask!{{username}}</h2>
+    <figure>
+        <!-- url_for is a built-in function used to dynamically build url -->
+        <img src="{{ url_for('static', filename='mountain.jpg')}}" alt="imag of a mountain"
+    </figure>
+    <h2 class="subtitle"> Lists</h2>
+    {% for i in listfruits%}
+        <p>{{i}}</p>
+    {% endfor %}
+
+    <h3> check if {{f}} is in the list</h3>
+    {% if f in listfruits %}
+        <p class="instock"> Great! we have {{f}} today! </p>
+    {% else %}
+        <p class="outstock"> {{f}} is not in the list!</p>
+    {% endif %}
+</body>
+</html>
