@@ -28,7 +28,7 @@ def about():
 
 @app.route('/quotes')
 def quotes():
-    return '<h1>quotes</h1>'
+    return render_template('quotes.html')
 
 #set the 'app' to run if you execute the file directly (not when it is imported)
 if __name__ == '__main__':

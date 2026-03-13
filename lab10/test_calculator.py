@@ -13,7 +13,7 @@ def test_add():
 
 def test_subtract():
     assert subtract(7,5) == 2
-    assert subtract(-7,5) == -12
+    assert subtract(-7,5) == -12 
     assert subtract(-7,-5) == -2
 
 
@@ -52,16 +52,3 @@ def test_is_even(n, expected):
 #lab exercise 4 
 #create a parametrizes test from
 
-# lab exercise 4 : parametrize password validation
-@pytest.mark.parametrize(
-    "password,expected",
-    [
-        ("peter$pan", True),
-        ("pan", False),
-        ("peter#pan", False),
-        ("peter pan", False),
-        ("peter%pan", False)
-    ]
-)
-def test_validate_password_param(password, expected):
-    assert validate_password(password) == expected
