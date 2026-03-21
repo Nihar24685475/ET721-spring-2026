@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee form</title>
+    <link  rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+</head>
+<body>
+    <h1 class="title">Nihar patel</h1>
+    <main class="container">
+        <h2>Add Employee</h2>
+        <form method="post">
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" name="name" id="employeename" required>
+            </div>
+
+            <div>
+                <label for="employeeage">Age:</label>
+                <input type="number"  name="age" id="employeeage"required>
+            </div>
+            <div>
+                <button type="submit">SUBMIT</button>
+            </div>
+            
+        </form>
+
+        <div class= "dbmsg">
+            <p> {{msg}} </p>
+        </div>
+    </main>
+    <footer class="footer">
+        mini form app @ march 2026 - By: Nihar Patel
+    </footer>
+</body>
+</html>
