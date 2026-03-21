@@ -1,0 +1,47 @@
+* {
+  box-sizing: border-box;
+}
+
+/* base.html */
+.title {
+  text-align: center;
+  color: magenta;
+}
+
+.maincontainer {
+  width: 70%;
+  margin: 3rem auto;
+  padding: 1rem;
+  border: solid 1px lightgray;
+}
+
+.footer {
+  background-color: rgb(1, 1, 80);
+  color: aliceblue;
+  padding: 1rem 2rem;
+  text-align: center;
+}
+
+/* index.html */
+.subtitle {
+    text-align: center; color: darkblue;
+}
+form {width: 50%; margin: auto;}
+input, textarea {width: 100%; display: block; margin-bottom: 1rem; padding: 0.5rem 1rem;}
+button {
+    width: 100%;
+    display: block;
+    margin-top: 1rem;
+    border: none;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: darkblue;
+    color: whitesmoke;
+}
+button:hover {
+    background-color: crimson;
+    cursor: pointer;
+}
+
+/* blogs.html */
+.blogseparator {border-bottom: 1px ridge lightgray; margin-bottom: 1rem;}

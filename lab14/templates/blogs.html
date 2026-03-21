@@ -1,0 +1,13 @@
+{% extends 'base.html'%}
+{%block title%}All blogs {%endblock%}
+{%block msg%} student's full name all blogs {%endblock%}
+{%block content%}
+{%for blog in blogs%}
+<div class="blogseparator">
+    <h3>{{blog[2]}}</h3>
+    <p><strong>By: {{blog[1]}}</strong></p>
+    <p>{{blog[3]}}</p>
+    <p><em>Posted on {{blog[4]}}</em></p>
+</div>
+{%endfor%}
+{%endblock%}
