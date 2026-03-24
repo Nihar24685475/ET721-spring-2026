@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Item</title>
+</head>
+<body>
+    <h2>Create Item by Nihar Patel</h2>
+    <form id="itemform">
+        <div>
+            <label> Name: 
+            <input type="text" id = "name" required>
+        </label>
+        </div>
+        <div>
+            <label>
+                price:
+                <input type="number" id = "price" required>
+            </label>
+        </div>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+
+        <p id="response"></p>
+    </form>
+
+    <script>
+        document.querySelector("#itemform").addEventListener("submit", async function(e) {
+            // prevent the form to clear the data after submission
+            e.preventDefault();
+
+            //collect values from the form
+            const name = document.querySelector("#name").value
+            const price = document.querySelector("#price").value
+
+            try{
+                //await = pause from here until the request finishes
+                //fetch = send an HTTP request to server
+                const res = await fetch("http://127.0.0.1:5000/items", {
+                    method : "POST",
+                    headers: {
+                        "Content-Type": "application/json"},
+                    body: JSON.stringify({name, price: Number(price)})
+                })
+
+                // testing = print the response
+                const data = await res.json()
+                document.querySelector("#response").innerHTML = "Response: " + JSON.stringify(data)
+            }catch(error){
+                document.querySelector("#response").innerHTML = "ERROR: " + error
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+#!/bin/sh
+'''exec' "/Users/niharpatel/Documents/sem 4/ET721 sd/ET721-spring-2026/lab15/virtual/bin/python3" "$0" "$@"
+' '''
+import sys
+from flask.cli import main
+if __name__ == '__main__':
+    sys.argv[0] = sys.argv[0].removesuffix('.exe')
+    sys.exit(main())
