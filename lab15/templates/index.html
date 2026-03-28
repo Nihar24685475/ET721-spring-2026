@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Item</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <div class="container">
+        <h1>Nihar Patel</h1>
+        <h2>Create Item</h2>
+    </div>
     <h2>Create Item by Nihar Patel</h2>
     <form id="itemform">
         <div>
@@ -25,11 +30,31 @@
 
         <p id="response"></p>
     </form>
+<!-- LOADINFG ITEM -->
+<section>
+    <hr>
+    <h2>ALL ITEMS</h2>
+    <button onclick="loaditems()">LOAD ITEMS</button>
 
+    <ul id="itemsList"> </ul>
+    <!-- Table to update an item name and price  -->
+     <section id="updatesection" style="display: none;">
+        <h3>Update Item</h3>
+        <input type="hidden" id="updateID">
+        <label>
+            Name: <input type="text" id="updateName">
+        </label>
+        <label>
+            Price: <input type="text" id="updatePrice">
+        </label>
+
+        <button onclick="updateItem()">SAVE UPDATE</button>
+     </section>
+</section>
     <script>
         document.querySelector("#itemform").addEventListener("submit", async function(e) {
             // prevent the form to clear the data after submission
-            e.preventDefault();
+            e.preventDefault()
 
             //collect values from the form
             const name = document.querySelector("#name").value
@@ -47,11 +72,65 @@
 
                 // testing = print the response
                 const data = await res.json()
-                document.querySelector("#response").innerHTML = "Response: " + JSON.stringify(data)
+                document.querySelector('#response').innerHTML = "Response: " + JSON.stringify(data)
             }catch(error){
-                document.querySelector("#response").innerHTML = "ERROR: " + error
+                document.querySelector('#response').innerHTML = "Response: ERROR" + error
             }
         })
+
+        //loading items
+        async function loaditems(){
+            const res = await fetch("http://127.0.0.1:5000/items")
+            const data = await res.json()
+
+            // collect the element to print all items 
+            const list = document.querySelector("#itemsList")
+            list.innerHTML = ""
+
+            // use loop to place each item in the json dga to list
+            for (const id in data){
+                const item = data[id]
+
+                const li = document.createElement("li")
+                li.innerHTML = `ID = ${id} | Name = ${item.name} | Price = ${item.price}
+                <button onclick = "showupdateform('${id}', '${item.name}', '${item.price}')">UPDATE</button>
+                <button onclick = "deleteitem('${id}')">DELETE</button>
+                `
+                list.appendChild(li)
+                
+            }
+        }
+        // function to update an item
+        function showupdateform(id, name, price){
+            document.querySelector("#updatesection").style.display = "block"
+            document.querySelector("#updateID").value = id
+            document.querySelector("#updateName").value = name
+            document.querySelector("#updatePrice").value = price
+        }
+
+        // funciton to update price and item 
+        async function updateItem(){
+            const id = document.querySelector("#updateID").value
+            const name = document.querySelector("#updateName").value
+            const price = document.querySelector("#updatePrice").value
+
+        // update the json data in the localhost
+        const res = await fetch(`http://127.0.0.1:5000/items/${id}`,{
+            method : "PUT",
+            headers: {"Content-type" : "application/json"},
+            body: JSON.stringify({name:name, price: Number(price)})
+        })
+        const html = await res.text()
+        document.body.innerHTML = html
+    }
+    //function to remove an itme
+    async function deleteitem(id){
+        const res = await fetch(`http://127.0.0.1:5000/items/${id}`,{
+            method : "DELETE"
+        })
+        const html = await res.text()
+        document.body.innerHTML = html
+    }
     </script>
 </body>
 </html>
