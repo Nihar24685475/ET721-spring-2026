@@ -42,7 +42,7 @@ def handle_item(item_id):
     if request.method == 'GET':
         
         if not item:
-            #404 = server is rechaable but the item you asked for doesn't exiest
+            #404 = server is rechable but the item you asked for doesn't exiest
             return jsonify({'error':'Item not found'}), 404
         return jsonify(item)
     
