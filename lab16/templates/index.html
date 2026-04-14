@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask to-do Web App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='todo_style.css') }}">
+</head>
+<body>
+    <main class="maincontainer">
+        <h1 class="title">To-do list by student's full name</h1>
+
+        <input type="text" id="taskinput" placeholder="Enter a task...">
+        <button class="btnaddtask" onclick="addTask()">Add Task</button>
+
+        <!-- load all task-->
+        <ul id="tasklist"></ul>
+    </main>
+
+    <script src="{{url_for('static', filename = 'todo_script.js')}}"></script>
+</body>
+</html>
+
