@@ -1,0 +1,59 @@
+*{box-sizing:  border-box;}
+.maincontainer{
+    width: 900px;
+    margin: 3rem auto;
+    background-color: aliceblue;
+    padding: 2rem;
+
+}
+
+.title{
+    text-align: center;
+    color: darkblue;
+
+}
+#taskinput{
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius:  8px;
+    font-size: 1.3rem;
+}
+.btnaddtask{
+    width: 100%;
+    border-radius: 5px;
+    margin-top: 2rem;
+    background-color: blue;
+    padding: 1rem;
+    color: aliceblue;
+    border: none;
+    font-size: 1.5rem;
+
+}
+.btnaddtask:hover{
+    background-color: crimson;
+    font-weight: bolder;
+    cursor: pointer;
+
+}
+.task-item{
+    background-color: whitesmoke;
+    list-style: none;
+    padding: 1rem 0rem;
+    border-bottom: solid gray 1px;
+    font-size: 1.5rem;
+
+}
+#tasklist{
+    background-color: whitesmoke;
+}
+.btn-delete-item{
+    border: none;
+    float: right;
+    margin-right: 1rem;
+    background-color: rgba(1,1,1,0);
+}
+.btn-delete-item:hover{
+    opacity: 0.4;
+    cursor: pointer;
+}
