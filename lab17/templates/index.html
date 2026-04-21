@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Images uploder app</title>
+    <link rel="stylesheet" href="{{url_for('static', filename = 'imguploader_style.css')}}">
+</head>
+<body>
+    <h1 class="title">Uload image by Nihar patel</h1>
+    <from id="uploadFrom">
+        <input type="file" name="image" id="imageinput" required>
+        <button type="submit" class="btnupload"> Upload</button>
+    </from>
+    
+    <p id="massage">Testing</p>
+
+    <h2 class="subtitle">Gallery</h2>
+    <div class="gallery" id="gallery">
+        <div class="card">
+            <img src="{{url_for('static', filename = 'uploads/city.jpg')}}">
+        </div>
+        
+    </div>
+
+
+    <script src="{{url_for('static', filename = 'imguploader_script.js')}}"></script>
+</body>
+</html>

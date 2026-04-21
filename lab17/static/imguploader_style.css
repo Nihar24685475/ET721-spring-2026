@@ -1,0 +1,50 @@
+*{box-sizing: border-box;}
+img{width:100%; display: block;}
+body{font-family: Arial; padding:1.5rem;}
+.title{text-align: center; color: 3898db;}
+#uploadFrom{
+    background-color: rgb(240,250,255);
+    width: 1000px;
+    margin: 2rem auto;
+    padding: 2rem auto;
+    border-radius: 5px;
+
+}
+#imageinput, .btnupload{
+    font-size: 1.2rem;
+    padding:1rem;
+    color: rgb(70,70,70);
+}
+#imageinput::file-selector-button, .btnupload{
+    padding:0.5rem 1.5rem;
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition:0.2s ease;
+}
+#imageinput::file-selector-button{
+    background-color: #3898db
+}
+.btnupload{
+    background-color: darkblue;
+}
+#imageinput::file-selector-button:hover, .btnupload:hover{
+    background-color: crimson;
+}
+#massage{
+    text-align: center;
+    font-size: 1.2rem;
+    color: rgb(70,70,70);
+    font-style: italic;
+}
+.subtitle{color: darkblue;}
+.gallery{display: flex; flex-wrap: wrap;}
+.card{
+    margin: 10px;
+    text-align: center;
+    width: 200px;
+    overflow:hidden;
+    border-radius: 8px;
+}
