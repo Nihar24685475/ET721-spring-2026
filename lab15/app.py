@@ -20,7 +20,7 @@ def create_item():
     # get-json method to read json data sent by teh client in an http request 
     data = request.get_json()
 
-    #genrate a new unique id for the new item 
+    #genrate a new unique id for the new item Python: Select Interpreter
     item_id = str(len(items)+1)
 
     #add the data collect fo the new item
@@ -42,7 +42,7 @@ def handle_item(item_id):
     if request.method == 'GET':
         
         if not item:
-            #404 = server is rechable but the item you asked for doesn't exiest
+            #404 = server is rechaable but the item you asked for doesn't exiest
             return jsonify({'error':'Item not found'}), 404
         return jsonify(item)
     

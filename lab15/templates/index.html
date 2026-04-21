@@ -15,30 +15,30 @@
     <form id="itemform">
         <div>
             <label> Name: 
-            <input type="text" id = "name" required>
+            <input type="text" id="name" required>
         </label>
         </div>
         <div>
             <label>
-                price:
-                <input type="number" id = "price" required>
+                Price:
+                <input type="number" id="price" required>
             </label>
         </div>
         <div>
             <button type="submit">Submit</button>
         </div>
-
         <p id="response"></p>
     </form>
-<!-- LOADINFG ITEM -->
+
+<!-- LOADING ITEMS -->
 <section>
     <hr>
     <h2>ALL ITEMS</h2>
     <button onclick="loaditems()">LOAD ITEMS</button>
+    <ul id="itemsList"></ul>
 
-    <ul id="itemsList"> </ul>
-    <!-- Table to update an item name and price  -->
-     <section id="updatesection" style="display: none;">
+    <!-- Table to update an item name and price -->
+    <section id="updatesection" style="display: none;">
         <h3>Update Item</h3>
         <input type="hidden" id="updateID">
         <label>
@@ -47,90 +47,79 @@
         <label>
             Price: <input type="text" id="updatePrice">
         </label>
-
         <button onclick="updateItem()">SAVE UPDATE</button>
-     </section>
+    </section>
 </section>
+
     <script>
         document.querySelector("#itemform").addEventListener("submit", async function(e) {
-            // prevent the form to clear the data after submission
             e.preventDefault()
 
-            //collect values from the form
             const name = document.querySelector("#name").value
             const price = document.querySelector("#price").value
 
-            try{
-                //await = pause from here until the request finishes
-                //fetch = send an HTTP request to server
-                const res = await fetch("http://127.0.0.1:5000/items", {
-                    method : "POST",
-                    headers: {
-                        "Content-Type": "application/json"},
+            try {
+                const res = await fetch("/items", {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
                     body: JSON.stringify({name, price: Number(price)})
                 })
-
-                // testing = print the response
                 const data = await res.json()
                 document.querySelector('#response').innerHTML = "Response: " + JSON.stringify(data)
-            }catch(error){
+            } catch(error) {
                 document.querySelector('#response').innerHTML = "Response: ERROR" + error
             }
         })
 
-        //loading items
-        async function loaditems(){
-            const res = await fetch("http://127.0.0.1:5000/items")
+        // loading items
+        async function loaditems() {
+            const res = await fetch("/items")   // FIXED
             const data = await res.json()
 
-            // collect the element to print all items 
             const list = document.querySelector("#itemsList")
             list.innerHTML = ""
 
-            // use loop to place each item in the json dga to list
-            for (const id in data){
+            for (const id in data) {
                 const item = data[id]
-
                 const li = document.createElement("li")
                 li.innerHTML = `ID = ${id} | Name = ${item.name} | Price = ${item.price}
-                <button onclick = "showupdateform('${id}', '${item.name}', '${item.price}')">UPDATE</button>
-                <button onclick = "deleteitem('${id}')">DELETE</button>
-                `
+                <button onclick="showupdateform('${id}', '${item.name}', '${item.price}')">UPDATE</button>
+                <button onclick="deleteitem('${id}')">DELETE</button>`
                 list.appendChild(li)
-                
             }
         }
-        // function to update an item
-        function showupdateform(id, name, price){
+
+        // show update form
+        function showupdateform(id, name, price) {
             document.querySelector("#updatesection").style.display = "block"
             document.querySelector("#updateID").value = id
             document.querySelector("#updateName").value = name
             document.querySelector("#updatePrice").value = price
         }
 
-        // funciton to update price and item 
-        async function updateItem(){
+        // update item
+        async function updateItem() {
             const id = document.querySelector("#updateID").value
             const name = document.querySelector("#updateName").value
             const price = document.querySelector("#updatePrice").value
 
-        // update the json data in the localhost
-        const res = await fetch(`http://127.0.0.1:5000/items/${id}`,{
-            method : "PUT",
-            headers: {"Content-type" : "application/json"},
-            body: JSON.stringify({name:name, price: Number(price)})
-        })
-        const html = await res.text()
-        document.body.innerHTML = html
-    }
-    //function to remove an itme
-    async function deleteitem(id){
-        const res = await fetch(`http://127.0.0.1:5000/items/${id}`,{
-            method : "DELETE"
-        })
-        const html = await res.text()
-        document.body.innerHTML = html
-    }
+            const res = await fetch(`/items/${id}`, {   // FIXED
+                method: "PUT",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({name: name, price: Number(price)})
+            })
+            const html = await res.text()
+            document.body.innerHTML = html
+        }
+
+        // delete item
+        async function deleteitem(id) {
+            const res = await fetch(`/items/${id}`, {   // FIXED
+                method: "DELETE"
+            })
+            const html = await res.text()
+            document.body.innerHTML = html
+        }
     </script>
 </body>
 </html>
