@@ -1,12 +1,12 @@
 *{box-sizing: border-box;}
 img{width:100%; display: block;}
 body{font-family: Arial; padding:1.5rem;}
-.title{text-align: center; color: 3898db;}
+.title{text-align: center; color: #3898db;}
 #uploadFrom{
     background-color: rgb(240,250,255);
     width: 1000px;
     margin: 2rem auto;
-    padding: 2rem auto;
+    padding: 2rem;
     border-radius: 5px;
 
 }
@@ -33,7 +33,7 @@ body{font-family: Arial; padding:1.5rem;}
 #imageinput::file-selector-button:hover, .btnupload:hover{
     background-color: crimson;
 }
-#massage{
+#message{
     text-align: center;
     font-size: 1.2rem;
     color: rgb(70,70,70);
@@ -44,7 +44,7 @@ body{font-family: Arial; padding:1.5rem;}
 .card{
     margin: 10px;
     text-align: center;
-    width: 200px;
+    width: 300px;
     overflow:hidden;
     border-radius: 8px;
 }
