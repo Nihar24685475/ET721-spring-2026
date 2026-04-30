@@ -45,15 +45,15 @@ def index():
 #--------------------------------------------------
 # UPLOAD IMAGE
 #--------------------------------------------------
-@app.route('/upload', methods = ["POST"])
-def uploas_image():
+@app.route('/upload', methods = ['POST'])
+def upload_image():
     if 'image' not in request.files:
         return jsonify({'error':'No file part'}), 400
     
     file = request.files['image']
 
-    if file.filename == "":
-        return jsonify({'error':'No selected file '}), 400
+    if file.filename == '':
+        return jsonify({'error':'No selected file'}), 400
     
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
@@ -63,13 +63,44 @@ def uploas_image():
         conn = get_db_connection()
         cursor = conn.cursor()
         cursor.execute("INSERT INTO images (filename) VALUES (%s)", (filename,))
-        cursor.commit()
+        conn.commit()
         cursor.close()
         conn.close()
 
-        return jsonify({'massage': 'Image uploaded successfully!'})
+        return jsonify({'message': 'Image uploaded successfully!'})
     
     return jsonify({'error':'Invalid file type'}), 400
+
+#--------------------------------------------------
+# delete an IMAGE
+#--------------------------------------------------
+@app.route('/delete/<int:image_id>' , methods=['DELETE'])
+def delete_image(image_id):
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary = True)
+
+    #get filename
+    cursor.execute("SELECT filename FROM images WHERE id = %s", (image_id,))
+    image = cursor.fetchone()
+
+    if not image :
+        cursor.close()
+        conn.close()
+        return jsonify({'error':'Image not found'}),404
+                       
+    filepath = os.path.join(app.config['UPLOAD_FOLDER'], image['filename'])
+    
+    # delete from database
+    cursor.execute("DELETE FROM images WHERE id = %s", (image_id,))
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+    # delete file form the folder
+    if os.path.exists(filepath):
+        os.remove(filepath)
+
+    return jsonify({'message' : 'image deleted successfully'})
 #--------------------------------------------------
 # RUN APP
 #--------------------------------------------------
