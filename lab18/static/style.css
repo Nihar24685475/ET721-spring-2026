@@ -50,3 +50,7 @@
 .signup_div a:hover{
     color: crimson;
 }
+
+.flash_msg{
+    color: crimson;
+}
